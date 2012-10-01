@@ -274,9 +274,7 @@ LOCAL_CACHE_PATH = env('LOCAL_CACHE_PATH', os.path.join(PROJECT_ROOT, "cache"))
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': LOCAL_CACHE_PATH,
-        'OPTIONS': {'MAX_ENTRIES': 1000000},
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
