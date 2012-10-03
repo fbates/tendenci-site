@@ -278,6 +278,16 @@ CACHES = {
     }
 }
 
+# Local memcached requires memcached to be running locally.
+LOCAL_MEMCACHED_URL = env('LOCAL_MEMCACHED_URL', None)
+if LOCAL_MEMCACHED_URL:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+            'LOCATION': LOCAL_MEMCACHED_URL,
+        }
+    }
+
 # MEMCACHE
 # https://addons.heroku.com/memcache
 

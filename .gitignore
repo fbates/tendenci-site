@@ -25,7 +25,7 @@ addons_list.json
 venv/
 tendenci-site/local.py
 conf/local.py
-static/
+/static
 
 /schema.xml
 celeryd.pid
