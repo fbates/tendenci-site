@@ -31,6 +31,7 @@ except:
 
 from tendenci.settings import *
 
+SITE_MODE = env('SITE_MODE', 'prod')
 
 ADMINS = ()
 
@@ -236,6 +237,17 @@ if USE_S3_STORAGE:
     THEMES_DIR = '%s/themes' % S3_SITE_ROOT_URL
 
     AWS_QUERYSTRING_AUTH = False
+
+
+# SITE_MODE of dev is used to read the theme locally
+# even if S3 settings are setup.
+# This setting is 'prod' by default, which will base the theme
+# path on whether or not S3 is configured
+if SITE_MODE == 'dev':
+    USE_S3_THEME = False
+else:
+    if USE_S3_STORAGE:
+        USE_S3_THEME = True
 
 
 SSL_ENABLED = env('SSL_ENABLED', False)
