@@ -159,7 +159,7 @@ LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'themes'),)
 DEPLOYHOOKS_HTTP_URL = env('DEPLOYHOOKS_HTTP_URL', None)
 
 if DEPLOYHOOKS_HTTP_URL:
-    REMOTE_DEPLOY_EXTRA = env('REMOTE_DEPLOY_EXTRA', "action/")
+    REMOTE_DEPLOY_EXTRA = env('REMOTE_DEPLOY_EXTRA', "theme_edit/")
     REMOTE_DEPLOY_URL = DEPLOYHOOKS_HTTP_URL + REMOTE_DEPLOY_EXTRA
 
 # -------------------------------------- #
