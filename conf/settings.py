@@ -1,33 +1,9 @@
-import os.path
-from os import environ
+import os
 import dj_database_url
+from . import env
 
 # go one level up
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-
-# Helper lambda for gracefully degrading environmental variables:
-env = lambda e, d: environ[e] if e in environ else d
-
-# Load the .env file into the os.environ for secure information
-try:
-    env_file = open(os.path.join(PROJECT_ROOT, '.env'), 'r')
-    for line in env_file.readlines():
-        env_key = line.rstrip().split("=")[0]
-        if env_key:
-            env_key = env_key.rstrip()
-            # set the environment variable to the value with the start and
-            # end quotes taken off.
-            env_value = ''.join(line.rstrip().split("=")[1:]).strip()
-            if env_value:
-                if env_value[0] == "'" or env_value[0] == '"':
-                    env_value = env_value[1:-1]
-
-                environ[env_key] = env_value
-    env_file.close()
-except:
-    # no .env file or errors in the file
-    pass
-
 
 from tendenci.settings import *
 
@@ -191,7 +167,7 @@ TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.static', )
 # ----------------------------------------- #
 # s3 storeage example
 # set this up at https://console.aws.amazon.com/console/home
-# deploy script will ignore and use local if not configured. 
+# deploy script will ignore and use local if not configured.
 # It's all good.
 # ----------------------------------------- #
 AWS_LOCATION = env('AWS_LOCATION', '')    # this is usually your site name
