@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
-from django.views.decorators.csrf import csrf_exempt
 
 from tendenci.urls import urlpatterns as tendenci_urls
 
@@ -22,18 +21,11 @@ if not settings.USE_S3_STORAGE:
         }),
     )
 
-
-@csrf_exempt
-def deploy_view(request):
-    from django.http import HttpResponse
-    from subprocess import Popen
-
-    Popen(['python', 'deploy.py'])
-    response = HttpResponse("Deploy triggered.", content_type="text/plain")
-    return response
-
-urlpatterns += patterns('',
-    url(r'^deploy/%s/$' % settings.SECRET_KEY, deploy_view)
-    )
+# Local url patterns for development
+try:
+    from local_urls import extrapatterns
+    urlpatterns += extrapatterns
+except ImportError:
+    pass
 
 urlpatterns += tendenci_urls
