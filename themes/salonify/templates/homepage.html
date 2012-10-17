@@ -1,5 +1,5 @@
 {% comment %}
-PR Firm Theme - homepage.html
+Salonify Theme - homepage.html
 {% endcomment %}
 
 {% load base_filters %}
@@ -55,7 +55,7 @@ PR Firm Theme - homepage.html
                         <img src="{% stock_image_url '940x544' %}" alt="Tendenci sample image" />
                         <div class="blurb">
                             <h2><a href="/">Sample Story {{ forloop.counter }}</a></h2>
-                            <p>Great new content. {% if request.user.is_authenticated %}<a href="/stories/add/?tags=rotator">Add your first story</a> to take the place of this photo. Be sure to <strong>rotator</strong> so that it shows up in this area.{% endif %}</p>
+                            <p>Great new content. {% if request.user.is_authenticated %}<a href="/stories/add/?tags=rotator">Add your first story</a> to take the place of this photo. Be sure to tag it <strong>rotator</strong> so that it shows up in this area.{% endif %}</p>
                             <span id="story-label-{{ forloop.counter0 }}" class="story-label">Sample {{ forloop.counter }}</span>
                         </div>
                     </div>
