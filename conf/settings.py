@@ -162,7 +162,9 @@ STATIC_URL = '/static/'
 
 STOCK_STATIC_URL = '//d15jim10qtjxjw.cloudfront.net/master-90/'
 
-TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.static', )
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.static',
+    'tendenci.core.base.context_processors.newrelic',)
 
 # ----------------------------------------- #
 # s3 storeage example
