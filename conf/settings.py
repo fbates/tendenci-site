@@ -208,8 +208,10 @@ if USE_S3_STORAGE:
     S3_STATIC_ROOT = "/%s/" % STATIC_S3_PATH
     STATIC_URL = '%s/static/' % S3_SITE_ROOT_URL
 
-    TINYMCE_JS_ROOT = STATIC_ROOT + 'tinymce'
-    TINYMCE_JS_URL = STATIC_URL + 'tinymce/tiny_mce.js'
+    # From http://www.tinymce.com/wiki.php/How-to_load_TinyMCE_crossdomain
+    # "Please note that it is not possible to load TinyMCE crossdomain"
+    # TINYMCE_JS_ROOT = STATIC_ROOT + 'tinymce'
+    # TINYMCE_JS_URL = STATIC_URL + 'tinymce/tiny_mce.js'
 
     S3_THEME_ROOT = "/%s/" % THEME_S3_PATH
     THEMES_DIR = '%s/themes' % S3_SITE_ROOT_URL
