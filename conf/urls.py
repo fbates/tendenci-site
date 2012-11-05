@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from tendenci.urls import urlpatterns as tendenci_urls
 
 handler500 = 'tendenci.core.base.views.custom_error'
+handler404 = 'tendenci.core.base.http.render_to_404'
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = staticfiles_urlpatterns()
