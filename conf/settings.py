@@ -162,7 +162,9 @@ STATIC_URL = '/static/'
 
 STOCK_STATIC_URL = '//d15jim10qtjxjw.cloudfront.net/master-90/'
 
-TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.static', )
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.static',
+    'tendenci.core.base.context_processors.newrelic',)
 
 # ----------------------------------------- #
 # s3 storeage example
@@ -206,8 +208,10 @@ if USE_S3_STORAGE:
     S3_STATIC_ROOT = "/%s/" % STATIC_S3_PATH
     STATIC_URL = '%s/static/' % S3_SITE_ROOT_URL
 
-    #TINYMCE_JS_ROOT = STATIC_ROOT + 'tinymce'
-    #TINYMCE_JS_URL = STATIC_URL + 'tinymce/tiny_mce.js'
+    # From http://www.tinymce.com/wiki.php/How-to_load_TinyMCE_crossdomain
+    # "Please note that it is not possible to load TinyMCE crossdomain"
+    # TINYMCE_JS_ROOT = STATIC_ROOT + 'tinymce'
+    # TINYMCE_JS_URL = STATIC_URL + 'tinymce/tiny_mce.js'
 
     S3_THEME_ROOT = "/%s/" % THEME_S3_PATH
     THEMES_DIR = '%s/themes' % S3_SITE_ROOT_URL
@@ -391,3 +395,9 @@ CAMPAIGNMONITOR_API_CLIENT_ID = env('CAMPAIGNMONITOR_API_CLIENT_ID', '')
 DEFAULT_INSTALLED_APPS = INSTALLED_APPS
 from tendenci.core.registry.utils import update_addons
 INSTALLED_APPS = update_addons(INSTALLED_APPS, SITE_ADDONS_PATH)
+
+# local settings for development
+try:
+    from local_settings import *
+except ImportError:
+    pass
