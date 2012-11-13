@@ -4,7 +4,6 @@ from django.conf.urls.defaults import *
 from tendenci.urls import urlpatterns as tendenci_urls
 
 handler500 = 'tendenci.core.base.views.custom_error'
-handler404 = 'tendenci.core.handler404.views.handle_404'
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = staticfiles_urlpatterns()
